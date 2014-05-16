@@ -1,6 +1,19 @@
+<form action="/links" method="POST">
+  ENTER URL HERE:<input type="text" name="url">
+  <input type="submit">
+</form>
+
 <div ng-controller = 'linksController'>
   <ul ng-repeat = 'link in links'>
-    <li> {{link}} </li>
+    <li>
+      <div class="link">
+        <h5>{{ link.title }}</h5>
+        <p class="url">{{ link.url}}</p>
+        <a href="{{ link.base_url }}/{{ link.code }}">
+          {{link.base_url}}/{{link.code}}
+        </a>
+      </div>
+    </li>
   </ul>
 </div>
 
