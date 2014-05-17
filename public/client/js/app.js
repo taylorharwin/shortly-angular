@@ -7,5 +7,16 @@ app.controller('linksController', function($scope, $http){
   .success(function(data, status, headers, config){
     $scope.links = data;
   });
+  $scope.predicate = "'visits';";
+
+  $scope.flipPredicate = function() {
+    if($scope.predicate === "'-visits';") {
+      $scope.predicate = "'visits';";
+    } else {
+      $scope.predicate = "'-visits';";
+    }
+    // console.log('i was called');
+  };
 
 });
+
