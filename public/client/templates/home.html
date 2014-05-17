@@ -1,1 +1,23 @@
+<form action="/links" name="myForm" method="POST">
+  ENTER URL HERE:<input type="url" required ng-model='text' name="url">
+  <input type="submit">
+  <span class="error" ng-show="myForm.input.$error.url"> Not a valid URL!</span>
+</form>
+
+<div ng-controller = 'linksController'>
+  <a href='' ng-click="flipPredicate()">Sort by Visits</a>
+
+  <input type='text' ng-model='search' placeholder='Search links...'>
+
+  <div ng-repeat = 'link in links | orderBy:predicate | filter:search'>
+      <div class="link">
+        <h5>{{ link.title }}</h5>
+        <p class="url">{{ link.url}}</p>
+        <a href="{{ link.base_url }}/{{ link.code }}">
+          {{link.base_url}}/{{link.code}}
+        </a>
+        <p class="visits">{{link.visits}}</p>
+      </div>
+  </div>
+</div>
 
