@@ -48,6 +48,22 @@ app.controller('linksController', function($scope, $http, getLink){
     // console.log('i was called');
   };
 
+  $scope.postLink = function() {
+    $scope.isLoading = true;
+    $http({
+      method: 'POST',
+      url: '/links',
+      data: {
+        url: $scope.postText
+      }
+    }).then(function() {
+      $scope.links = getLink.getLinks().then(function(data, status, headers, config, statusText) {
+        $scope.links = data.data;
+        $scope.isLoading = false;
+      });
+    });
+  };
+
 });
 
 
