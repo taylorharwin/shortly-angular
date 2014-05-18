@@ -12,7 +12,6 @@ app.config(['$routeProvider', function($routeProvider){
 }]);
 
 app.controller('homeController',['$scope', function($scope, $route, $routeParams){
-  console.log('Inside of controller');
   $scope.$route = $route;
   $scope.$routeParams = $routeParams;
 }]);
@@ -31,6 +30,14 @@ app.service('getLink', function($http){
   // return fac;
 });
 
+app.directive('sayHello', function(){
+  var res = {};
+  console.log('The directive works');
+  res.template = function(){
+    return '<span class="error" ng-show="myForm.input.$error.url"> That is not a valid URL!</span>';
+  };
+  return res;
+});
 
 app.controller('linksController', function($scope, $http, getLink){
   $scope.links = getLink.getLinks().then(function(data, status, headers, config, statusText) {
@@ -38,6 +45,8 @@ app.controller('linksController', function($scope, $http, getLink){
     $scope.links = data.data;
   });
   $scope.predicate = "'visits';";
+
+  $scope.myurl =  'test';
 
   $scope.flipPredicate = function() {
     if($scope.predicate === "'-visits';") {

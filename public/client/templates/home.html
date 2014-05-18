@@ -6,8 +6,8 @@
 
 <div ng-controller = 'linksController'>
   <form name="myForm" novalidate>
-    <span class="error" ng-show="myForm.input.$error.url"> Not a valid URL!</span>
-    ENTER URL HERE<input type="url" name="input" ng-model="postText" >
+    <div say-hello></div>
+    ENTER URL HERE<input type="url" name="input" ng-model="myurl" >
     <input type="submit" ng-click="postLink()">
     <img src="/client/spiffygif_46x46.gif" ng-show="isLoading"/>
   </form>
@@ -15,11 +15,11 @@
 
   <input type='text' ng-model='search' placeholder='Search links...'>
 
-  <div ng-repeat = 'link in links | orderBy:predicate | filter:search'>
-      <div class="link">
+  <div class ="row" ng-repeat = 'link in links | orderBy:predicate | filter:search'>
+      <div class="small-12 large-12 columns link">
         <h5>{{ link.title }}</h5>
         <p class="url">{{ link.url}}</p>
-        <a href="{{ link.base_url }}/{{ link.code }}">
+        <a href="{{ link.base_url }}/routeToLink/{{ link.code }}">
           {{link.base_url}}/{{link.code}}
         </a>
         <p class="visits">{{link.visits}}</p>
